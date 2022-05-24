@@ -16,3 +16,14 @@ body {
 		background-position: 0% 50%;
 	}
 }
+
+footer {
+	position: relative;
+	width: 100%;
+	height: 100px;
+	background: #101010;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
