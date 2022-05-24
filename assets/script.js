@@ -17,7 +17,7 @@ fetch(imoveurl)
         "<div class='column'>" +
           "<div class='callout'>" +
           `<p><img src="${photoUrl}"/></p>` +
-          `<a class="modalLink">${movieName}</a>` +
+          `<a class="modalLink" data-bs-toggle="modal" data-bs-target="#movieModal">${movieName}</a>` +
           `<p>${voteScore}</p>` +
           "</div>" +
           "</div>"
