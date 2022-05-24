@@ -26,11 +26,12 @@ footer {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	margin: 0px;
 }
 footer p:nth-child(1){
 	font-size: 25px;
 	color: white;
-	margin-bottom: 12px;
+	margin-bottom: 5px;
 	font-weight: bold;
 
 }
@@ -48,6 +49,7 @@ footer p:nth-child(3){
 	width: 450px;
 	text-align: center;
 	line-height: 10px;
+	margin-bottom: -7px;
 }
 
 .links {
@@ -68,6 +70,7 @@ footer p:nth-child(3){
 .links a:hover {
 	transform: scale(1.5);
 	transition: .5s;
+	
 }
 
 .links i {
