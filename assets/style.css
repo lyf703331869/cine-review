@@ -103,11 +103,6 @@ footer p:nth-child(3){
 	font-size: 20px;
 }
 
-.top-bar, li,{
-	color:azure;
-	background-color:#0e685381; 
-} 
-
 .top-bar ul {
 background-color: #0e6853;
 border-radius:20px 0px 0px 20px;
