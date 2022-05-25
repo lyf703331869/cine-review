@@ -100,4 +100,6 @@ footer p:nth-child(3){
 }
 .top-bar-left {
 	color: #0e6853;
+	font-style: bold;
+	font-size: 28px;
 }
