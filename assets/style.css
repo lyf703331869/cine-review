@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
   box-sizing: border-box;
 }
@@ -107,6 +108,13 @@ body {
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   height: 100vh;
+=======
+main {
+	background: linear-gradient(-45deg, #e4592e, #e73c7e, #23a6d5, #0e6853);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 180%;
+>>>>>>> f4eda2f99b70bb20538b29664f2bf4fa75914d22
 }
 
 @keyframes gradient {
@@ -176,5 +184,23 @@ footer p:nth-child(3) {
 }
 
 .links i {
+<<<<<<< HEAD
   font-size: 30px;
+=======
+	font-size: 30px;
+}
+
+
+.callout {
+	background-color: rgb(77, 74, 74);
+	cursor: pointer;
+	height: 390px;
+}
+
+.callout:hover{
+	transform: scale(1.07);
+	transition: .5s;
+	
+
+>>>>>>> f4eda2f99b70bb20538b29664f2bf4fa75914d22
 }
