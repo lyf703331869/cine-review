@@ -107,6 +107,7 @@ footer p:nth-child(3){
 
 .top-bar ul {
 background-color: #0e6853;
+border-radius:20px 20px 20px 20px;
  }
 .button{
 	background-color: #0e6853;
