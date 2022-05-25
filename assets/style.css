@@ -1,8 +1,15 @@
-main {
+
+html {
+  height: auto;
+}
+
+body {
   background: linear-gradient(-45deg, #e4592e, #e73c7e, #23a6d5, #0e6853);
-  background-size: 400% 400%;
+  background-size: 300%;
+  height: 100%;
+  min-height: 100vh;
+  background-repeat: no-repeat;
   animation: gradient 15s ease infinite;
-  height: 180%;
 }
 
 @keyframes gradient {
@@ -76,7 +83,8 @@ footer p:nth-child(3) {
 }
 
 .callout {
-  background-color: rgb(77, 74, 74);
+  color: whtie;
+  background-color: rgba(77, 74, 74, 0.95);
   cursor: pointer;
   height: 390px;
 }
@@ -88,6 +96,7 @@ footer p:nth-child(3) {
 
 .orbit-container {
   height: 400px;
+
   cursor: pointer;
 }
 /* Styling for the pop up modal portion*/
@@ -124,3 +133,4 @@ footer p:nth-child(3) {
   text-decoration: none;
   cursor: pointer;
 }
+

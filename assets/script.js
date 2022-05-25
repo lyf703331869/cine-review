@@ -118,6 +118,7 @@ function getRandomInt(min, max) {
 
 // For Modal
 
+
 // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -130,4 +131,5 @@ document.querySelector(".movieCard").addEventListener("click", function () {
 // this code responsible for allwing user to exit the modal
 document.querySelector(".close").addEventListener("click", function () {
   modal.style.display = "none";
+
 });
