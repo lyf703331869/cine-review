@@ -32,7 +32,7 @@ fetch(imoveurl)
         "https://www.themoviedb.org/t/p/w440_and_h660_face" + posterId;
       $(".movieCard").append(
         "<div class='column'>" +
-          "<div class='callout'>" +
+          "<div class='callout' id='myBtn' >" +
           `<p><img src="${photoUrl}"/></p>` +
           `<a class="modalLink" data-bs-toggle="modal" data-bs-target="#movieModal">${movieName}</a>` +
           `<p>${voteScore}</p>` +
@@ -109,3 +109,11 @@ min = Math.ceil(min);
 max = Math.floor(max);
 return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+// For Modal
+var mybtn = document.querySelector('.movieCard');
+mybtn.addEventListener('click', function () {
+  console.log("this works!");
+});
+
+
