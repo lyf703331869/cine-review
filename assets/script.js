@@ -1,8 +1,10 @@
-
-var url = "https://developers.themoviedb.org/3/movies/get-movie-details";
+var baseUrl = "https://api.themoviedb.org/3";
 var api = "795237d1f5c251b1695453597353c8fd";
-var newUrl =
-  "https://api.themoviedb.org/3/movie/top_rated?api_key=795237d1f5c251b1695453597353c8fd&language=en-US&page=1&with_genres=18";
+var searchPath =
+  baseUrl +
+  "/search/movie?api_key=" +
+  api +
+  "&language=en-US&page=1&include_adult=false";
 
 // Selecting the elements from the document aka DOM
 var searchBtn = document.querySelector(".button");
@@ -11,10 +13,29 @@ var input = document.querySelector("#input");
 // $(".searchBtn").on("click", checkurl);
 
 searchBtn.addEventListener("click", function () {
-  console.log("this yo");
-
-  // get the input value
 });
+
+// Break down for team on header:
+
+
+//slide
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  slides[slideIndex - 1].style.display = "block";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+
 
 // main part
 var imoveurl =
@@ -41,5 +62,5 @@ fetch(imoveurl)
           "</div>"
       );
     }
-  });
+
 
