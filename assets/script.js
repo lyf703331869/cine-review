@@ -31,18 +31,13 @@ fetch(imoveurl)
       var photoUrl =
         "https://www.themoviedb.org/t/p/w440_and_h660_face" + posterId;
       $(".movieCard").append(
-        // "<div class='column'>" +
-        //   "<div class='callout'>" +
-        //   `<p><img src="${photoUrl}"/></p>` +
-        //   `<a class="modalLink" data-bs-toggle="modal" data-bs-target="#movieModal">${movieName}</a>` +
-        //   `<p>${voteScore}</p>` +
-        //   "</div>" +
-        //   "</div>"
-        `
-        <div>
-            <div>${photoUrl}</div>
-        </div>
-        `
+        `<div class='column'>
+          <div class='callout'>
+          <p><img src="${photoUrl}"/></p>
+          <a class="modalLink" data-bs-toggle="modal" data-bs-target="#movieModal">${movieName}</a>
+          </div>
+          </div>
+          `
       );
     }
   });
