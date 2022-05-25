@@ -115,3 +115,11 @@ function getRandomInt(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+// For Modal
+var mybtn = document.querySelector('.movieCard');
+mybtn.addEventListener('click', function () {
+  console.log("this works!");
+});
+
+
