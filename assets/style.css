@@ -94,4 +94,7 @@ footer p:nth-child(3){
 .orbit-container {
 	height: 400px;
 }
-
+.top-bar {
+	background-color:lavenderblush;
+	position: sticky;
+}
