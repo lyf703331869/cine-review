@@ -13,6 +13,10 @@ searchBtn.addEventListener("click", function () {
   console.log("this yo");
 
   // get the input value
+  console.log(input.value)
+  var searchterminput=input.value
+  var titleurl=`https://api.themoviedb.org/3/search/movie?api_key=795237d1f5c251b1695453597353c8fd&query=${searchterminput}`
+console.log(titleurl)
 });
 
 // main part
