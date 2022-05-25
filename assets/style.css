@@ -1,8 +1,8 @@
-body {
+main {
   background: linear-gradient(-45deg, #e4592e, #e73c7e, #23a6d5, #0e6853);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
-  height: 150vh;
+  height: 180%;
 }
 
 @keyframes gradient {
@@ -73,4 +73,8 @@ footer p:nth-child(3) {
 
 .links i {
   font-size: 30px;
+}
+
+.orbit-container {
+  height: 400px;
 }
