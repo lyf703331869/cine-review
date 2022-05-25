@@ -1,3 +1,4 @@
+
 html {
   height: auto;
 }
@@ -95,4 +96,41 @@ footer p:nth-child(3) {
 
 .orbit-container {
   height: 400px;
+
+  cursor: pointer;
 }
+/* Styling for the pop up modal portion*/
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.806); /* Black w/ opacity */
+}
+/*styling for the modal pop up*/
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  height: 400px;
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+

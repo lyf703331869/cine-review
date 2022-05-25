@@ -32,7 +32,7 @@ fetch(imoveurl)
         "https://www.themoviedb.org/t/p/w440_and_h660_face" + posterId;
       $(".movieCard").append(
         "<div class='column'>" +
-          "<div class='callout' id='myBtn' >" +
+          "<div class='callout' id='myBtn'>" +
           `<p><img src="${photoUrl}"/></p>` +
           `<a class="modalLink" data-bs-toggle="modal" data-bs-target="#movieModal">${movieName}</a>` +
           `<p>${voteScore}</p>` +
@@ -117,7 +117,19 @@ function getRandomInt(min, max) {
 }
 
 // For Modal
-var mybtn = document.querySelector(".movieCard");
-mybtn.addEventListener("click", function () {
-  console.log("this works!");
+
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// clicking on any movie image generates a modal
+document.querySelector(".movieCard").addEventListener("click", function () {
+  //console.log("this works!");
+  modal.style.display = "block";
+});
+
+// this code responsible for allwing user to exit the modal
+document.querySelector(".close").addEventListener("click", function () {
+  modal.style.display = "none";
+
 });
