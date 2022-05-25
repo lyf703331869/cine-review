@@ -98,3 +98,6 @@ footer p:nth-child(3){
 	background-color:lavenderblush;
 	position: sticky;
 }
+.top-bar-left {
+	color: #0e6853;
+}
