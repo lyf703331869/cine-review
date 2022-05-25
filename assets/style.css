@@ -103,15 +103,11 @@ footer p:nth-child(3){
 	font-style: bold;
 	font-size: 28px;
 }
-a{
+.top-bar, a{
 	color:azure;
-	background-color:#0e6853;
-	margin-left: 700px;
-	font-style: bold;
+	background-color:#0e685381;
 }
-.dropdown.menu .has-submenu.is-down-arrow>a::after{
-	color: #0e6853;
-}
+
 .top-bar ul {
 background-color: #0e6853;
 
