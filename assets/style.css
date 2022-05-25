@@ -94,14 +94,11 @@ footer p:nth-child(3){
 .orbit-container {
 	height: 400px;
 }
-.top-bar {
-	background-color:#0e6853;
-	position: sticky;
-}
+ 
 .top-bar-left {
 	color: azure;
 	font-style: bold;
-	font-size: 28px;
+	font-size: 20px;
 }
 .top-bar, a{
 	color:azure;
@@ -110,5 +107,7 @@ footer p:nth-child(3){
 
 .top-bar ul {
 background-color: #0e6853;
-
-}
+ }
+.button{
+	background-color: #0e6853;
+} 
