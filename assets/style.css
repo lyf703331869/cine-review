@@ -108,3 +108,16 @@ footer p:nth-child(3) {
   width: 80%; /* Could be more or less, depending on screen size */
   height: 400px;
 }
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
