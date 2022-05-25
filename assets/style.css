@@ -77,7 +77,6 @@ footer p:nth-child(3){
 	font-size: 30px;
 }
 
-
 .callout {
 	background-color: rgb(77, 74, 74);
 	cursor: pointer;
@@ -94,21 +93,31 @@ footer p:nth-child(3){
 .orbit-container {
 	height: 400px;
 }
+.top-bar {
+	background-color: #0e685385;
+}
  
 .top-bar-left {
 	color: azure;
 	font-style: bold;
 	font-size: 20px;
 }
-.top-bar, a{
+
+.top-bar, li,{
 	color:azure;
-	background-color:#0e685381;
-}
+	background-color:#0e685381; 
+} 
 
 .top-bar ul {
 background-color: #0e6853;
-border-radius:20px 20px 20px 20px;
+border-radius:20px 0px 0px 20px;
  }
+ 
 .button{
 	background-color: #0e6853;
 } 
+
+#input {
+	border-radius: 10px 10px 10px 10px;
+	border-color:#0e6853;
+}
