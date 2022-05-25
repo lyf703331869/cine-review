@@ -117,9 +117,7 @@ function getRandomInt(min, max) {
 }
 
 // For Modal
-var mybtn = document.querySelector('.movieCard');
-mybtn.addEventListener('click', function () {
+var mybtn = document.querySelector(".movieCard");
+mybtn.addEventListener("click", function () {
   console.log("this works!");
 });
-
-
