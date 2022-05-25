@@ -90,3 +90,21 @@ footer p:nth-child(3) {
   height: 400px;
   cursor: pointer;
 }
+/* Styling for the pop up modal portion*/
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 400px;
+}
+/*styling for the modal pop up*/
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 400px;
+}
