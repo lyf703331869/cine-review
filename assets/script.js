@@ -80,13 +80,16 @@ fetch(
 document.getElementById("genres").addEventListener("click", function (e) {
   if (e.target && e.target.nodeName !== "LI") {
     $(".movieCard").text("");
+    var selectedOption = document.getElementById("sort-options");
+    console.log(selectedOption.value);
     var genreId = e.target.id;
-    var genreUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=795237d1f5c251b1695453597353c8fd&with_genres=${genreId}`;
+    var genreUrl = `https://api.themoviedb.org/3/movie/${selectedOption.value}?api_key=795237d1f5c251b1695453597353c8fd&with_genres=${genreId}`;
     fetch(genreUrl)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
+        console.log(data);
         for (i = 0; i < data.results.length; i++) {
           if (data.results[i].poster_path !== null) {
             var movieName = data.results[i].title;
@@ -174,14 +177,58 @@ document.querySelector(".movieCard").addEventListener("click", function (e) {
 
 function modalFunction(selectedElement) {
   var id = selectedElement.children[3].textContent;
+  var detailUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=795237d1f5c251b1695453597353c8fd&language=en-US`;
   var trailerUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=795237d1f5c251b1695453597353c8fd&language=en-US`;
   $("#movie-title").text(selectedElement.children[1].text);
   $("#movie-plot").text(selectedElement.children[4].textContent);
+  $("#reviews").empty();
+  $("#movie-cast").empty();
+  fetch(detailUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      var imdbId = data.imdb_id;
+      console.log(imdbId);
+      var reviewUrl = `https://imdb-api.com/en/API/Reviews/k_m5443zev/${imdbId}`;
+      fetch(reviewUrl)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          for (i = 0; i < 3; i++) {
+            var reviewContent = data.items[i].content;
+            var reviewUser = data.items[i].username;
+            var reviewList = `${reviewUser}: "${reviewContent}"`;
+            var li = document.createElement("LI");
+            li.textContent = reviewList;
+            document.getElementById("reviews").appendChild(li);
+          }
+        });
+      var CastUrl = `https://imdb-api.com/en/API/FullCast/k_m5443zev/${imdbId}`;
+      fetch(CastUrl)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          document.getElementById("movie-director").textContent =
+            data.directors.items[0].name;
+          for (i = 0; i < 5; i++) {
+            document.getElementById("movie-cast").textContent +=
+              data.actors[i].name + " / ";
+          }
+        });
+    });
+
   fetch(trailerUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
+      console.log(data);
       var youtubeUrl = "https://www.youtube.com/watch?v=" + data.results[0].key;
       console.log(youtubeUrl);
     });

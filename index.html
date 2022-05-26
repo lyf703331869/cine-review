@@ -48,6 +48,13 @@
               <li><a href="#" id="10752"> War </a></li>
             </ul>
           </li>
+          <li>
+            <select name="sort-options" id="sort-options">
+              <option selected="selected" value="top_rated">Top Rated</option>
+              <option value="popular">Popular</option>
+              <option value="now_playing">Now Playing</option>
+            </select>
+          </li>
         </ul>
       </div>
       <div class="top-bar-right">
@@ -107,8 +114,16 @@
       <div class="modal-content">
         <span class="close">&times;</span>
         <div id="modal-poster"></div>
+        <h5>Title:</h5>
         <p id="movie-title"></p>
+        <h5>Director:</h5>
+        <p id="movie-director"></p>
+        <h5>Cast:</h5>
+        <p id="movie-cast"></p>
+        <h5>Plot:</h5>
         <p id="movie-plot"></p>
+        <h5>Reviews:</h5>
+        <ul id="reviews"></ul>
       </div>
     </div>
 
