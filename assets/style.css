@@ -1,9 +1,14 @@
+* {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
 html {
   height: auto;
 }
 .large {
   margin-top: 55px;
 }
+
 body {
   background: linear-gradient(-45deg, #e4592e, #e73c7e, #23a6d5, #0e6853);
   background-size: 300%;
@@ -39,6 +44,7 @@ body {
   padding: 14px 16px;
   text-decoration: none;
 }
+/*styling for footer*/
 footer {
   position: relative;
   width: 100%;
@@ -101,11 +107,11 @@ footer p:nth-child(3) {
   color: whtie;
   background-color: rgba(77, 74, 74, 0.95);
   cursor: pointer;
-  height: 390px;
+  height: 375px;
 }
 
 .callout:hover {
-  transform: scale(1.07);
+  transform: scale(1.06);
   transition: 0.5s;
 }
 
@@ -136,9 +142,9 @@ footer p:nth-child(3) {
   );
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
   width: 70%;
   height: 600px;
+  border: 4px solid #101010;
 }
 .close {
   color: #aaa;
