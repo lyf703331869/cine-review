@@ -77,7 +77,7 @@ fetch(
 
     $(document).foundation();
   });
-// end of carousel js
+// end of carousel 
 
 document.getElementById("genres").addEventListener("click", function (e) {
   if (e.target && e.target.nodeName !== "LI") {
