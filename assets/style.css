@@ -182,15 +182,17 @@ footer p:nth-child(3) {
 .top-bar ul {
     border-radius: 20px 20px 20px 20px;
     background-color: #5e6462b3;
-	height: 50px;
+	
 }
 .button {
     background-color: #5f64635c;
 	border-radius: 20px;
+	margin-left: 20px;
 }
 .top-bar input {
 	border-radius: 20px 20px 20px 20px;
 	background-color: #5f64635c;
+	margin-left: 9px;
 }
 .menu-text {
 	color: aliceblue;
