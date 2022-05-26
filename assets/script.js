@@ -38,6 +38,7 @@ searchBtn.addEventListener("click", function () {
     });
 });
 
+
 // main part
 
 //carousel
@@ -76,6 +77,7 @@ fetch(
 
     $(document).foundation();
   });
+// end of carousel 
 
 document.getElementById("genres").addEventListener("click", function (e) {
   if (e.target && e.target.nodeName !== "LI") {
@@ -89,7 +91,6 @@ document.getElementById("genres").addEventListener("click", function (e) {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
         for (i = 0; i < data.results.length; i++) {
           if (data.results[i].poster_path !== null) {
             var movieName = data.results[i].title;

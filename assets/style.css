@@ -6,7 +6,7 @@ html {
   height: auto;
 }
 .large {
-  margin-top: 55px;
+  margin-top: 68px;
 }
 body {
   background: linear-gradient(-45deg, #e4592e, #e73c7e, #23a6d5, #0e6853);
@@ -168,3 +168,49 @@ footer p:nth-child(3) {
   text-decoration: none;
   cursor: pointer;
 }
+.top-bar {
+    background-color: #000000c8;
+	
+}
+ 
+.top-bar-left {
+    color: rgb(29, 32, 32);
+    font-style: bold;
+    font-size: 20px;
+	width: 500px;
+}
+.top-bar ul {
+    border-radius: 20px 20px 20px 20px;
+    background-color: #5e6462b3;
+	height: 52px;
+}
+.button {
+    background-color: #5f64635c;
+	border-radius: 20px;
+	margin-left: 30px;
+	margin-top: 8px;
+}
+.top-bar input {
+	border-radius: 20px 20px 20px 20px;
+	background-color: #5f64635c;
+	margin-left: 9px;
+	margin-top: 10px;
+}
+.menu-text {
+	color: aliceblue;
+}
+.input,li {
+	width: 150px;
+}
+#sort-options {
+	background-color: #5f64635c;
+	border-color: #1010106f;
+	border-radius: 20px;
+}
+.menu >li> a {
+	color: aliceblue;
+	}
+	.orbit-container{
+		height: 500px;
+	}
+	
