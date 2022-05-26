@@ -8,17 +8,14 @@ searchBtn.addEventListener("click", function () {
   // empty the movie card
   $(".movieCard").text("");
   // get the input value
-  console.log(input.value);
   var searchInput = input.value;
   var searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=795237d1f5c251b1695453597353c8fd&query=${searchInput}`;
-  console.log(searchUrl);
 
   fetch(searchUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       for (i = 0; i < data.results.length; i++) {
         if (data.results[i].poster_path !== null) {
           var movieName = data.results[i].title;
@@ -29,7 +26,7 @@ searchBtn.addEventListener("click", function () {
           $(".movieCard").append(
             `<div class='column'>
           <div class='callout'>
-          <p><img src="${photoUrl}"/></p>
+          <img src="${photoUrl}"/>
           <a class="modalLink" data-bs-toggle="modal" data-bs-target="#movieModal">${movieName}</a>
           <p>${voteScore}</p>
           </div>
@@ -87,26 +84,28 @@ document.getElementById("genres").addEventListener("click", function (e) {
     $(".movieCard").text("");
     var genreId = e.target.id;
     var genreUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=795237d1f5c251b1695453597353c8fd&with_genres=${genreId}`;
-    console.log(genreUrl);
     fetch(genreUrl)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
         for (i = 0; i < data.results.length; i++) {
           if (data.results[i].poster_path !== null) {
             var movieName = data.results[i].title;
             var posterId = data.results[i].poster_path;
             var voteScore = data.results[i].vote_average;
+            var Plot = data.results[i].overview;
+            var movieId = data.results[i].id;
             var photoUrl =
               "https://www.themoviedb.org/t/p/w440_and_h660_face" + posterId;
             $(".movieCard").append(
               `<div class='column'>
           <div class='callout'>
-          <p><img src="${photoUrl}"/></p>
+          <img src="${photoUrl}"/>
           <a class="modalLink" data-bs-toggle="modal" data-bs-target="#movieModal">${movieName}</a>
           <p>${voteScore}</p>
+          <p style="display:none" id="movieId">${movieId}</p>
+          <p style="display:none" id="moviePlot">${Plot}</p>
           </div>
           </div>
           `
@@ -162,11 +161,33 @@ function getRandomInt(min, max) {
 var modal = document.getElementById("myModal");
 
 // clicking on any movie image generates a modal
-document.querySelector(".movieCard").addEventListener("click", function () {
+document.querySelector(".movieCard").addEventListener("click", function (e) {
   //console.log("this works!");
-  modal.style.display = "block";
+  if (e.target.nodeName === "DIV") {
+    modal.style.display = "block";
+    var selectedElement = e.target;
+    modalFunction(selectedElement);
+  } else {
+    modal.style.display = "block";
+    var selectedElement = e.target.parentElement;
+    modalFunction(selectedElement);
+  }
 });
 
+function modalFunction(selectedElement) {
+  var id = selectedElement.children[3].textContent;
+  var trailerUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=795237d1f5c251b1695453597353c8fd&language=en-US`;
+  $("#movie-title").text(selectedElement.children[1].text);
+  $("#movie-plot").text(selectedElement.children[4].textContent);
+  fetch(trailerUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var youtubeUrl = "https://www.youtube.com/watch?v=" + data.results[0].key;
+      console.log(youtubeUrl);
+    });
+}
 // this code responsible for allwing user to exit the modal
 document.querySelector(".close").addEventListener("click", function () {
   modal.style.display = "none";

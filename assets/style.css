@@ -141,19 +141,29 @@ footer p:nth-child(3) {
   font-size: 28px;
   font-weight: bold;
 }
-.top-bar {
-	background-color: #68706e85;
-}
- 
-.top-bar-left {
-	color: azure;
-	font-style: bold;
-	font-size: 20px;
-}
 
 .close:hover,
 .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+.top-bar {
+	background-color: #000000c8;
+}
+ 
+.top-bar-left {
+	color: rgb(29, 32, 32);
+	font-style: bold;
+	font-size: 20px;
+}
+.top-bar ul {
+	border-radius: 20px 20px 20px 20px;
+	background-color: #5e6462b3;
+}
+.button {
+	background-color: #5f64635c;
+}
+.search {
+	border-radius: 20px 20px 20px 20px;
 }
