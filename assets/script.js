@@ -78,10 +78,46 @@ fetch(
     }
 
     $(document).foundation();
-  })
-  .catch(() => {
-    alert("error loading carousel");
   });
+
+document.getElementById("genres").addEventListener("click", function (e) {
+  if (e.target && e.target.nodeName !== "LI") {
+    $(".movieCard").text("");
+    var genreId = e.target.id;
+    var genreUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=795237d1f5c251b1695453597353c8fd&with_genres=${genreId}`;
+    console.log(genreUrl);
+    fetch(genreUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        for (i = 0; i < data.results.length; i++) {
+          if (data.results[i].poster_path !== null) {
+            var movieName = data.results[i].title;
+            var posterId = data.results[i].poster_path;
+            var voteScore = data.results[i].vote_average;
+            var photoUrl =
+              "https://www.themoviedb.org/t/p/w440_and_h660_face" + posterId;
+            $(".movieCard").append(
+              `<div class='column'>
+          <div class='callout'>
+          <p><img src="${photoUrl}"/></p>
+          <a class="modalLink" data-bs-toggle="modal" data-bs-target="#movieModal">${movieName}</a>
+          <p>${voteScore}</p>
+          </div>
+          </div>
+          `
+            );
+          }
+        }
+      });
+  }
+});
+
+// .catch(() => {
+//   alert("error loading carousel");
+// });
 
 // function to generate random numbers for four posters between 0 and 19
 function generateRandomPhotos() {
