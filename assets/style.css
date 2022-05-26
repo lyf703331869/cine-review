@@ -170,25 +170,36 @@ footer p:nth-child(3) {
 }
 .top-bar {
     background-color: #000000c8;
+	
 }
  
 .top-bar-left {
     color: rgb(29, 32, 32);
     font-style: bold;
     font-size: 20px;
+	width: 500px;
 }
 .top-bar ul {
     border-radius: 20px 20px 20px 20px;
     background-color: #5e6462b3;
+	height: 50px;
 }
 .button {
     background-color: #5f64635c;
+	border-radius: 20px;
 }
-.search {
-    border-radius: 20px 20px 20px 20px;
-}
-
 .top-bar input {
 	border-radius: 20px 20px 20px 20px;
 	background-color: #5f64635c;
+}
+.menu-text {
+	color: aliceblue;
+}
+.input,li {
+	width: 150px;
+}
+#sort-options {
+	background-color: #5f64635c;
+	border-color: #1010106f;
+	border-radius: 20px;
 }
