@@ -1,3 +1,7 @@
+* {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
 html {
   height: auto;
 }
@@ -38,6 +42,16 @@ body {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+}
+.top-bar-right button {
+  padding: 10px;
+}
+.top-bar-left .menu-text {
+  font-size: 1.5em;
+  margin: auto;
+}
+#sort-options {
+  margin: auto;
 }
 footer {
   position: relative;
