@@ -1,7 +1,13 @@
+* {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
 html {
   height: auto;
 }
-
+.large {
+  margin-top: 55px;
+}
 body {
   background: linear-gradient(-45deg, #e4592e, #e73c7e, #23a6d5, #0e6853);
   background-size: 300%;
@@ -22,11 +28,35 @@ body {
     background-position: 0% 50%;
   }
 }
+.top-bar {
+  z-index: 9;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
 
+.top-bar .top-bar-left .top-bar-right {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.top-bar-right button {
+  padding: 10px;
+}
+.top-bar-left .menu-text {
+  font-size: 1.5em;
+  margin: auto;
+}
+#sort-options {
+  margin: auto;
+}
 footer {
   position: relative;
   width: 100%;
-  height: 150px;
+  height: 205px;
   background: #101010;
   display: flex;
   flex-direction: column;
@@ -112,12 +142,18 @@ footer p:nth-child(3) {
 }
 /*styling for the modal pop up*/
 .modal-content {
-  background-color: #fefefe;
   margin: 15% auto;
+  margin-top: 7%;
   padding: 20px;
-  border: 1px solid #888;
   width: 80%;
-  height: 400px;
+  min-height: 80%;
+  height: auto;
+  background: linear-gradient(
+    175deg,
+    rgba(94, 121, 255, 1) 6%,
+    rgba(164, 25, 54, 1) 91%
+  );
+  border: 4px solid #101010;
 }
 .close {
   color: #aaa;
