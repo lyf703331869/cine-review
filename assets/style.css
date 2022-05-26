@@ -178,22 +178,24 @@ footer p:nth-child(3) {
   font-size: 20px;
   width: 500px;
 }
+.top-bar-right {
+  margin-top: 9px;
+}
 .top-bar ul {
   border-radius: 20px 20px 20px 20px;
   background-color: #5e6462b3;
-  height: 52px;
+  height: auto;
 }
 .button {
   background-color: #5f64635c;
   border-radius: 20px;
   margin-left: 30px;
-  margin-top: 8px;
 }
 .top-bar input {
   border-radius: 20px 20px 20px 20px;
   background-color: #5f64635c;
   margin-left: 9px;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 .menu-text {
   color: aliceblue;
