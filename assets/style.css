@@ -205,3 +205,7 @@ footer p:nth-child(3) {
 	border-color: #1010106f;
 	border-radius: 20px;
 }
+.menu >li> a {
+	color: aliceblue;
+	border-radius: 20px;
+	}
