@@ -6,7 +6,7 @@ html {
   height: auto;
 }
 .large {
-  margin-top: 55px;
+  margin-top: 68px;
 }
 body {
   background: linear-gradient(-45deg, #e4592e, #e73c7e, #23a6d5, #0e6853);
@@ -182,17 +182,19 @@ footer p:nth-child(3) {
 .top-bar ul {
     border-radius: 20px 20px 20px 20px;
     background-color: #5e6462b3;
-	
+	height: 52px;
 }
 .button {
     background-color: #5f64635c;
 	border-radius: 20px;
-	margin-left: 20px;
+	margin-left: 30px;
+	margin-top: 8px;
 }
 .top-bar input {
 	border-radius: 20px 20px 20px 20px;
 	background-color: #5f64635c;
 	margin-left: 9px;
+	margin-top: 10px;
 }
 .menu-text {
 	color: aliceblue;
@@ -208,3 +210,7 @@ footer p:nth-child(3) {
 .menu >li> a {
 	color: aliceblue;
 	}
+	.orbit-container{
+		height: 500px;
+	}
+	
