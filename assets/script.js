@@ -75,7 +75,7 @@ fetch(
       }
     }
 
-    $(document).foundation();
+    // $(document).foundation();
   });
 // end of carousel js
 
