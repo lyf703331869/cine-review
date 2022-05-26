@@ -179,6 +179,7 @@ footer p:nth-child(3) {
   width: 500px;
 }
 .top-bar ul {
+<<<<<<< HEAD
   border-radius: 20px 20px 20px 20px;
   background-color: #5e6462b3;
 }
@@ -191,6 +192,23 @@ footer p:nth-child(3) {
   border-radius: 20px 20px 20px 20px;
   background-color: #5f64635c;
   margin-left: 9px;
+=======
+    border-radius: 20px 20px 20px 20px;
+    background-color: #5e6462b3;
+	height: 52px;
+}
+.button {
+    background-color: #5f64635c;
+	border-radius: 20px;
+	margin-left: 30px;
+	margin-top: 8px;
+}
+.top-bar input {
+	border-radius: 20px 20px 20px 20px;
+	background-color: #5f64635c;
+	margin-left: 9px;
+	margin-top: 10px;
+>>>>>>> a2d89573c8ea3b5b5ef30d401065bf29108e94ed
 }
 .menu-text {
   color: aliceblue;
@@ -207,3 +225,13 @@ li {
 .menu > li > a {
   color: aliceblue;
 }
+<<<<<<< HEAD
+=======
+.menu >li> a {
+	color: aliceblue;
+	}
+	.orbit-container{
+		height: 500px;
+	}
+	
+>>>>>>> a2d89573c8ea3b5b5ef30d401065bf29108e94ed
