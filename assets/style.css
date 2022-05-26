@@ -169,48 +169,52 @@ footer p:nth-child(3) {
   cursor: pointer;
 }
 .top-bar {
-    background-color: #000000c8;
-	
+  background-color: #000000c8;
 }
- 
+
 .top-bar-left {
-    color: rgb(29, 32, 32);
-    font-style: bold;
-    font-size: 20px;
-	width: 500px;
+  color: rgb(29, 32, 32);
+  font-style: bold;
+  font-size: 20px;
+  width: 500px;
+}
+.top-bar-right {
+  margin-top: 9px;
 }
 .top-bar ul {
-    border-radius: 20px 20px 20px 20px;
-    background-color: #5e6462b3;
-	height: 52px;
+  border-radius: 20px 20px 20px 20px;
+  background-color: #5e6462b3;
+  height: auto;
 }
 .button {
-    background-color: #5f64635c;
-	border-radius: 20px;
-	margin-left: 30px;
-	margin-top: 8px;
+  background-color: #5f64635c;
+  border-radius: 20px;
+  margin-left: 30px;
 }
 .top-bar input {
-	border-radius: 20px 20px 20px 20px;
-	background-color: #5f64635c;
-	margin-left: 9px;
-	margin-top: 10px;
+  border-radius: 20px 20px 20px 20px;
+  background-color: #5f64635c;
+  margin-left: 9px;
+  margin-top: 0px;
 }
 .menu-text {
-	color: aliceblue;
+  color: aliceblue;
 }
-.input,li {
-	width: 150px;
+.input,
+li {
+  width: 150px;
 }
 #sort-options {
-	background-color: #5f64635c;
-	border-color: #1010106f;
-	border-radius: 20px;
+  background-color: #5f64635c;
+  border-color: #1010106f;
+  border-radius: 20px;
 }
-.menu >li> a {
-	color: aliceblue;
-	}
-	.orbit-container{
-		height: 500px;
-	}
-	
+.menu > li > a {
+  color: aliceblue;
+}
+.menu > li > a {
+  color: aliceblue;
+}
+.orbit-container {
+  height: 500px;
+}
