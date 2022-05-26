@@ -1,0 +1,15 @@
+.cine {
+  font-family: "Smooch", cursive;
+  font-size: 300x;
+  color: white;
+  text-align: center;
+  display: block;
+}
+
+.review {
+  font-family: "Anton", sans-serif;
+  font-size: 200px;
+  color: white;
+  text-align: center;
+  display: block;
+}
