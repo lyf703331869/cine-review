@@ -128,12 +128,17 @@ footer p:nth-child(3) {
 }
 /*styling for the modal pop up*/
 .modal-content {
-  background-color: #fefefe;
+  background: rgb(94, 121, 255);
+  background: linear-gradient(
+    175deg,
+    rgba(94, 121, 255, 1) 6%,
+    rgba(164, 25, 54, 1) 91%
+  );
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
-  height: 400px;
+  width: 70%;
+  height: 600px;
 }
 .close {
   color: #aaa;
