@@ -80,8 +80,10 @@ fetch(
 document.getElementById("genres").addEventListener("click", function (e) {
   if (e.target && e.target.nodeName !== "LI") {
     $(".movieCard").text("");
+    var selectedOption = document.getElementById("sort-options");
+    console.log(selectedOption.value);
     var genreId = e.target.id;
-    var genreUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=795237d1f5c251b1695453597353c8fd&with_genres=${genreId}`;
+    var genreUrl = `https://api.themoviedb.org/3/movie/${selectedOption.value}?api_key=795237d1f5c251b1695453597353c8fd&with_genres=${genreId}`;
     fetch(genreUrl)
       .then(function (response) {
         return response.json();
