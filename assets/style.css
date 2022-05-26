@@ -1,4 +1,3 @@
-
 html {
   height: auto;
 }
@@ -95,7 +94,7 @@ footer p:nth-child(3) {
 }
 
 .orbit-container {
-  height: 400px;
+  height: 460px;
 
   cursor: pointer;
 }
@@ -133,4 +132,3 @@ footer p:nth-child(3) {
   text-decoration: none;
   cursor: pointer;
 }
-
