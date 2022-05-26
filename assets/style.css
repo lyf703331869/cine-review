@@ -142,7 +142,7 @@ footer p:nth-child(3) {
   font-weight: bold;
 }
 .top-bar {
-	background-color: #0e685385;
+	background-color: #68706e85;
 }
  
 .top-bar-left {
@@ -157,16 +157,3 @@ footer p:nth-child(3) {
   text-decoration: none;
   cursor: pointer;
 }
-.top-bar ul {
-	background-color: #0e6853;
-	border-radius:20px 0px 0px 20px;
-	 }
-	 
-	.button{
-		background-color: #0e6853;
-	} 
-	
-	#input {
-		border-radius: 10px 10px 10px 10px;
-		border-color:#0e6853;
-	}

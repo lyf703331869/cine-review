@@ -80,6 +80,7 @@ fetch(
 
     $(document).foundation();
   });
+// end of carousel js
 
 document.getElementById("genres").addEventListener("click", function (e) {
   if (e.target && e.target.nodeName !== "LI") {
