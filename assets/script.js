@@ -25,6 +25,7 @@ fetch(titleurl).then(function(response){
 })
 });
 
+
 // main part
 var imoveurl =
   "https://api.themoviedb.org/3/movie/top_rated?api_key=795237d1f5c251b1695453597353c8fd&language=en-US&page=1&with_genres=18";
