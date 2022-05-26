@@ -87,6 +87,7 @@ document.getElementById("genres").addEventListener("click", function (e) {
         return response.json();
       })
       .then(function (data) {
+        console.log(data);
         for (i = 0; i < data.results.length; i++) {
           if (data.results[i].poster_path !== null) {
             var movieName = data.results[i].title;
@@ -174,14 +175,42 @@ document.querySelector(".movieCard").addEventListener("click", function (e) {
 
 function modalFunction(selectedElement) {
   var id = selectedElement.children[3].textContent;
+  var detailUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=795237d1f5c251b1695453597353c8fd&language=en-US`;
   var trailerUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=795237d1f5c251b1695453597353c8fd&language=en-US`;
   $("#movie-title").text(selectedElement.children[1].text);
   $("#movie-plot").text(selectedElement.children[4].textContent);
+  $("#reviews").empty();
+  fetch(detailUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var imdbId = data.imdb_id;
+      console.log(imdbId);
+      var reviewApiUrl = `https://imdb-api.com/en/API/Reviews/k_m5443zev/${imdbId}`;
+      fetch(reviewApiUrl)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          for (i = 0; i < 2; i++) {
+            var reviewContent = data.items[i].content;
+            var reviewUser = data.items[i].username;
+            var reviewList = `${reviewUser}: ${reviewContent}`;
+            var li = document.createElement("LI");
+            li.textContent = reviewList;
+            document.getElementById("reviews").appendChild(li);
+          }
+        });
+    });
+
   fetch(trailerUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
+      console.log(data);
       var youtubeUrl = "https://www.youtube.com/watch?v=" + data.results[0].key;
       console.log(youtubeUrl);
     });
