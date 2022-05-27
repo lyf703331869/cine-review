@@ -114,6 +114,7 @@ document.getElementById("genres").addEventListener("click", function (e) {
             var voteScore = data.results[i].vote_average;
             var Plot = data.results[i].overview;
             var movieId = data.results[i].id;
+            var releaseDate = data.results[i].release_date;
             console.log(movieId);
             var scoreUrl =
               "https://cdn-icons-png.flaticon.com/128/2107/2107890.png";
@@ -128,6 +129,7 @@ document.getElementById("genres").addEventListener("click", function (e) {
           <img src="${scoreUrl}" id="scoreBg"/>
           <p style="display:none" id="movieId">${movieId}</p>
           <p style="display:none" id="moviePlot">${Plot}</p>
+          <p style="display:none" id="releaseDate">${releaseDate}</p>
           </div>
           </div>
           `
@@ -204,6 +206,7 @@ function modalFunction(selectedElement) {
   var trailerUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=795237d1f5c251b1695453597353c8fd&language=en-US`;
   $("#movie-title").text(selectedElement.children[1].text);
   $("#movie-plot").text(selectedElement.children[5].textContent);
+  $("#movie-date").text(selectedElement.children[6].textContent);
   $("#reviews").empty();
   $("#movie-cast").empty();
   fetch(detailUrl)
