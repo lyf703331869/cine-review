@@ -1,4 +1,4 @@
-# team-project1
+# CineReview
 
 Hello!
 This repository is called "cine-review" and has been worked on by team members Yafei Liu, Shay Bendeck, kamal kaur, and Toni Murtazaev. The goal of this project was to create a functional working website that incorporates two working third-party-Api's in order to create a seamless user experience in traversing our website and obtainin information on the movies searched.
