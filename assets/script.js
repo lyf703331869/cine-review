@@ -54,10 +54,6 @@ input.addEventListener("keypress", function (searchedMovies) {
   }
 });
 
-
-
-
-
 // main part
 
 //carousel
@@ -263,7 +259,7 @@ function modalFunction(selectedElement) {
       console.log(youtubeUrl);
     });
 }
-// this code responsible for allwing user to exit the modal
+// this code responsible for allowing user to exit the modal
 document.querySelector(".close").addEventListener("click", function () {
   modal.style.display = "none";
 });
