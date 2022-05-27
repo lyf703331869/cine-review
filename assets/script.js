@@ -82,7 +82,7 @@ document.getElementById("genres").addEventListener("click", function (e) {
   if (e.target && e.target.nodeName !== "LI") {
     $(".movieCard").text("");
     var selectedOption = document.getElementById("sort-options");
-    console.log(selectedOption.value);
+    // console.log(selectedOption.value);
     var genreId = e.target.id;
     var genreUrl = `https://api.themoviedb.org/3/movie/${selectedOption.value}?api_key=795237d1f5c251b1695453597353c8fd&with_genres=${genreId}`;
     fetch(genreUrl)
@@ -188,16 +188,16 @@ function modalFunction(selectedElement) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      // console.log(data);
       var imdbId = data.imdb_id;
-      console.log(imdbId);
+      // console.log(imdbId);
       var reviewUrl = `https://imdb-api.com/en/API/Reviews/k_m5443zev/${imdbId}`;
       fetch(reviewUrl)
         .then(function (response) {
           return response.json();
         })
         .then(function (data) {
-          console.log(data);
+          // console.log(data);
           for (i = 0; i < 3; i++) {
             var reviewContent = data.items[i].content;
             var reviewUser = data.items[i].username;
