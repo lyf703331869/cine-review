@@ -182,7 +182,7 @@ footer p:nth-child(3) {
 /*header styling*/
 .top-bar {
   background-color: #101010;
-  position: absolute;
+  position: fixed;
 }
 
 .top-bar-left {
