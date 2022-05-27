@@ -1,4 +1,3 @@
-/*standard font for page*/
 * {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
@@ -9,7 +8,6 @@ html {
 .large {
   margin-top: 68px;
 }
-
 body {
   background: linear-gradient(-45deg, #e4592e, #e73c7e, #23a6d5, #0e6853);
   background-size: 300%;
@@ -45,7 +43,16 @@ body {
   padding: 14px 16px;
   text-decoration: none;
 }
-/*styling for footer*/
+.top-bar-right button {
+  padding: 10px;
+}
+.top-bar-left .menu-text {
+  font-size: 1.5em;
+  margin: auto;
+}
+#sort-options {
+  margin: auto;
+}
 footer {
   position: relative;
   width: 100%;
@@ -108,11 +115,11 @@ footer p:nth-child(3) {
   color: whtie;
   background-color: rgba(77, 74, 74, 0.95);
   cursor: pointer;
-  height: 375px;
+  height: 390px;
 }
 
 .callout:hover {
-  transform: scale(1.06);
+  transform: scale(1.07);
   transition: 0.5s;
 }
 
@@ -148,10 +155,6 @@ footer p:nth-child(3) {
     rgba(94, 121, 255, 1) 6%,
     rgba(164, 25, 54, 1) 91%
   );
-  margin: 15% auto;
-  padding: 20px;
-  width: 70%;
-  height: 600px;
   border: 4px solid #101010;
 }
 
@@ -172,12 +175,15 @@ footer p:nth-child(3) {
   text-decoration: none;
   cursor: pointer;
 }
+
+/*header styling*/
 .top-bar {
-  background-color: #000000c8;
+  background-color: #101010;
+  position: absolute;
 }
 
 .top-bar-left {
-  color: rgb(29, 32, 32);
+  color: #101010;
   font-style: bold;
   font-size: 20px;
   width: 400px;
@@ -185,36 +191,38 @@ footer p:nth-child(3) {
 .top-bar-right {
   margin-top: 9px;
 }
+
 .top-bar ul {
-  border-radius: 20px 20px 20px 20px;
-  background-color: #5e6462b3;
+  border-radius: 20px 20px;
+  background-color: #101010;
   height: auto;
 }
+
 .button {
-  background-color: #5f64635c;
+  background-color: #e0f7f25c;
   border-radius: 20px;
   margin-left: 30px;
 }
 .top-bar input {
   border-radius: 20px 20px 20px 20px;
-  background-color: #5f64635c;
+  background-color: #19211f5c;
   margin-left: 9px;
   margin-top: 0px;
 }
 .menu-text {
-  color: aliceblue;
+  color: gold;
 }
 
 #sort-options {
-  background-color: #5f64635c;
+  background-color: #44897b5c;
   border-color: #1010106f;
-  border-radius: 20px;
+  border-radius: 25px;
 }
 .menu > li > a {
   color: aliceblue;
 }
 .menu > li > a {
-  color: aliceblue;
+  color: gold;
 }
 .orbit-container {
   height: 500px;
