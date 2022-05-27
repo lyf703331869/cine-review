@@ -144,7 +144,7 @@ footer p:nth-child(3) {
 .modal-content {
   z-index: 8;
   color: white;
-  font-size: 125%;
+  font-size: larger, border;
   margin: 15% auto;
   margin-top: 7%;
   padding: 20px;
@@ -255,7 +255,6 @@ footer p:nth-child(3) {
 
 #reviews li {
   margin-bottom: 20px;
-  font-style: italic;
 }
 
 .dropdown menu {
@@ -267,10 +266,7 @@ footer p:nth-child(3) {
   border: 2px solid gold;
   border-radius: 15px 15px;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 7da9d235d24660d120abb3fad97d8e06bd3419aa
 #scoreFt {
   font-family: Arial, Helvetica, sans-serif;
   color: black;
