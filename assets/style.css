@@ -208,26 +208,33 @@ footer p:nth-child(3) {
   background-color: #19211f5c;
   margin-left: 9px;
   margin-top: 0px;
+  border: 1.5px solid gold;
 }
 .menu-text {
   color: gold;
 }
 
 #sort-options {
-  background-color: #44897b5c;
-  border-color: #1010106f;
+  background-color: #101010;
+  border-color: gold;
   border-radius: 25px;
+  color: gold;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 .menu > li > a {
-  color: aliceblue;
-}
-.menu > li > a {
+  color: rgb(202, 209, 214);
   color: gold;
 }
+
 .orbit-container {
   height: 500px;
 }
 
 #reviews li {
   margin-bottom: 20px;
+}
+
+.dropdown menu {
+  background-color: #0e6853;
 }
