@@ -161,6 +161,8 @@ footer p:nth-child(3) {
 
 .modal-content h5 {
   font-size: 1.5em;
+  color: black;
+  font-weight: 600;
 }
 
 .close {
@@ -194,6 +196,11 @@ footer p:nth-child(3) {
 }
 #input {
   background-color: antiquewhite;
+  border: 2px solid gold;
+}
+#input:hover {
+  transform: scale(1.07);
+  transition: 0.5s;
 }
 
 .top-bar ul {
@@ -236,9 +243,6 @@ footer p:nth-child(3) {
   transform: scale(1.07);
   transition: 0.5s;
 }
-.menu.li.a {
-  color: gold;
-}
 
 .menu > li > a {
   color: rgb(12, 85, 134);
@@ -261,6 +265,8 @@ footer p:nth-child(3) {
   background-color: #101010;
   border: 2px solid gold;
   border-radius: 15px 15px;
+}
+
 #scoreFt {
   font-family: Arial, Helvetica, sans-serif;
   color: black;
