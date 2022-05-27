@@ -66,7 +66,7 @@ footer {
 }
 footer p:nth-child(1) {
   font-size: 25px;
-  color: white;
+  color: gold;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -191,6 +191,9 @@ footer p:nth-child(3) {
 .top-bar-right {
   margin-top: 9px;
 }
+#input {
+  background-color: antiquewhite;
+}
 
 .top-bar ul {
   border-radius: 20px 20px;
@@ -199,15 +202,21 @@ footer p:nth-child(3) {
 }
 
 .button {
-  background-color: #e0f7f25c;
+  background-color: #101010;
   border-radius: 20px;
-  margin-left: 30px;
+  margin-left: 10px;
+  color: gold;
+  border: 1px solid gold;
+}
+.button:hover {
+  transform: scale(1.07);
+  transition: 0.5s;
 }
 .top-bar input {
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 15px 15px;
   background-color: #19211f5c;
   margin-left: 9px;
-  margin-top: 0px;
+  margin-top: 5px;
   border: 1.5px solid gold;
 }
 .menu-text {
@@ -222,8 +231,16 @@ footer p:nth-child(3) {
   margin-left: 10px;
   margin-top: 5px;
 }
+#sort-options:hover {
+  transform: scale(1.07);
+  transition: 0.5s;
+}
+.menu.li.a {
+  color: gold;
+}
+
 .menu > li > a {
-  color: rgb(202, 209, 214);
+  color: rgb(12, 85, 134);
   color: gold;
 }
 
@@ -237,4 +254,10 @@ footer p:nth-child(3) {
 
 .dropdown menu {
   background-color: #0e6853;
+}
+
+#genres {
+  background-color: #101010;
+  border: 2px solid gold;
+  border-radius: 15px 15px;
 }
