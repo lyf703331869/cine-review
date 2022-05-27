@@ -90,6 +90,7 @@ document.getElementById("genres").addEventListener("click", function (e) {
         return response.json();
       })
       .then(function (data) {
+        console.log(data);
         for (i = 0; i < data.results.length; i++) {
           if (data.results[i].poster_path !== null) {
             var movieName = data.results[i].title;
@@ -97,6 +98,9 @@ document.getElementById("genres").addEventListener("click", function (e) {
             var voteScore = data.results[i].vote_average;
             var Plot = data.results[i].overview;
             var movieId = data.results[i].id;
+            console.log(movieId);
+            var scoreUrl =
+              "https://cdn-icons-png.flaticon.com/128/2107/2107890.png";
             var photoUrl =
               "https://www.themoviedb.org/t/p/w440_and_h660_face" + posterId;
             $(".movieCard").append(
@@ -104,7 +108,8 @@ document.getElementById("genres").addEventListener("click", function (e) {
           <div class='callout'>
           <img src="${photoUrl}"/>
           <a class="modalLink" data-bs-toggle="modal" data-bs-target="#movieModal">${movieName}</a>
-          <p>${voteScore}</p>
+          <p id="scoreFt">${voteScore}</p>
+          <img src="${scoreUrl}" id="scoreBg"/>
           <p style="display:none" id="movieId">${movieId}</p>
           <p style="display:none" id="moviePlot">${Plot}</p>
           </div>
@@ -165,10 +170,12 @@ var modal = document.getElementById("myModal");
 document.querySelector(".movieCard").addEventListener("click", function (e) {
   //console.log("this works!");
   if (e.target.nodeName === "DIV") {
+    console.log(e.target);
     modal.style.display = "block";
     var selectedElement = e.target;
     modalFunction(selectedElement);
   } else {
+    console.log(e.target);
     modal.style.display = "block";
     var selectedElement = e.target.parentElement;
     modalFunction(selectedElement);
@@ -176,11 +183,11 @@ document.querySelector(".movieCard").addEventListener("click", function (e) {
 });
 
 function modalFunction(selectedElement) {
-  var id = selectedElement.children[3].textContent;
+  var id = selectedElement.children[4].textContent;
   var detailUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=795237d1f5c251b1695453597353c8fd&language=en-US`;
   var trailerUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=795237d1f5c251b1695453597353c8fd&language=en-US`;
   $("#movie-title").text(selectedElement.children[1].text);
-  $("#movie-plot").text(selectedElement.children[4].textContent);
+  $("#movie-plot").text(selectedElement.children[5].textContent);
   $("#reviews").empty();
   $("#movie-cast").empty();
   fetch(detailUrl)
@@ -188,7 +195,7 @@ function modalFunction(selectedElement) {
       return response.json();
     })
     .then(function (data) {
-      // console.log(data);
+      console.log(data);
       var imdbId = data.imdb_id;
       // console.log(imdbId);
       var reviewUrl = `https://imdb-api.com/en/API/Reviews/k_m5443zev/${imdbId}`;
