@@ -66,7 +66,7 @@ footer {
 }
 footer p:nth-child(1) {
   font-size: 25px;
-  color: white;
+  color: gold;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -176,12 +176,15 @@ footer p:nth-child(3) {
   text-decoration: none;
   cursor: pointer;
 }
+
+/*header styling*/
 .top-bar {
-  background-color: #000000c8;
+  background-color: #101010;
+  position: absolute;
 }
 
 .top-bar-left {
-  color: rgb(29, 32, 32);
+  color: #101010;
   font-style: bold;
   font-size: 20px;
   width: 400px;
@@ -189,37 +192,59 @@ footer p:nth-child(3) {
 .top-bar-right {
   margin-top: 9px;
 }
+#input {
+  background-color: antiquewhite;
+}
+
 .top-bar ul {
-  border-radius: 20px 20px 20px 20px;
-  background-color: #5e6462b3;
+  border-radius: 20px 20px;
+  background-color: #101010;
   height: auto;
 }
+
 .button {
-  background-color: #5f64635c;
+  background-color: #101010;
   border-radius: 20px;
-  margin-left: 30px;
+  margin-left: 10px;
+  color: gold;
+  border: 1px solid gold;
+}
+.button:hover {
+  transform: scale(1.07);
+  transition: 0.5s;
 }
 .top-bar input {
-  border-radius: 20px 20px 20px 20px;
-  background-color: #5f64635c;
+  border-radius: 15px 15px;
+  background-color: #19211f5c;
   margin-left: 9px;
-  margin-top: 0px;
+  margin-top: 5px;
+  border: 1.5px solid gold;
 }
 .menu-text {
-  color: aliceblue;
+  color: gold;
 }
 
 #sort-options {
-  background-color: #5f64635c;
-  border-color: #1010106f;
-  border-radius: 20px;
+  background-color: #101010;
+  border-color: gold;
+  border-radius: 25px;
+  color: gold;
+  margin-left: 10px;
+  margin-top: 5px;
 }
+#sort-options:hover {
+  transform: scale(1.07);
+  transition: 0.5s;
+}
+.menu.li.a {
+  color: gold;
+}
+
 .menu > li > a {
-  color: aliceblue;
+  color: rgb(12, 85, 134);
+  color: gold;
 }
-.menu > li > a {
-  color: aliceblue;
-}
+
 .orbit-container {
   height: 500px;
 }
@@ -229,6 +254,14 @@ footer p:nth-child(3) {
   font-style: italic;
 }
 
+.dropdown menu {
+  background-color: #0e6853;
+}
+
+#genres {
+  background-color: #101010;
+  border: 2px solid gold;
+  border-radius: 15px 15px;
 #scoreFt {
   font-family: Arial, Helvetica, sans-serif;
   color: black;
