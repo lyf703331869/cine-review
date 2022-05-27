@@ -16,11 +16,17 @@ searchBtn.addEventListener("click", function () {
       return response.json();
     })
     .then(function (data) {
+      // console.log(data);
       for (i = 0; i < data.results.length; i++) {
         if (data.results[i].poster_path !== null) {
           var movieName = data.results[i].title;
           var posterId = data.results[i].poster_path;
           var voteScore = data.results[i].vote_average;
+          var Plot = data.results[i].overview;
+          var movieId = data.results[i].id;
+          var releaseDate = data.results[i].release_date;
+          var scoreUrl =
+            "https://cdn-icons-png.flaticon.com/128/2107/2107890.png";
           var photoUrl =
             "https://www.themoviedb.org/t/p/w440_and_h660_face" + posterId;
           $(".movieCard").append(
@@ -28,7 +34,11 @@ searchBtn.addEventListener("click", function () {
           <div class='callout'>
           <img src="${photoUrl}"/>
           <a class="modalLink" data-bs-toggle="modal" data-bs-target="#movieModal">${movieName}</a>
-          <p>${voteScore}</p>
+          <p id="scoreFt">${voteScore}</p>
+          <img src="${scoreUrl}" id="scoreBg"/>
+          <p style="display:none" id="movieId">${movieId}</p>
+          <p style="display:none" id="moviePlot">${Plot}</p>
+          <p style="display:none" id="releaseDate">${releaseDate}</p>
           </div>
           </div>
           `
