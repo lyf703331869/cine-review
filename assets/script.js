@@ -38,7 +38,6 @@ searchBtn.addEventListener("click", function () {
     });
 });
 
-
 // main part
 
 //carousel
@@ -77,7 +76,7 @@ fetch(
 
     $(document).foundation();
   });
-// end of carousel 
+// end of carousel
 
 document.getElementById("genres").addEventListener("click", function (e) {
   if (e.target && e.target.nodeName !== "LI") {
