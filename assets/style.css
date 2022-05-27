@@ -142,6 +142,7 @@ footer p:nth-child(3) {
 }
 /*styling for the modal pop up*/
 .modal-content {
+  z-index: 8;
   color: white;
   font-size: larger, border;
   margin: 15% auto;
@@ -225,4 +226,22 @@ footer p:nth-child(3) {
 
 #reviews li {
   margin-bottom: 20px;
+}
+
+#scoreFt {
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  position: absolute;
+  font-size: 1.25em;
+  font-style: bolder;
+  z-index: 1;
+  right: 27px;
+  bottom: 5px;
+}
+#scoreBg {
+  position: absolute;
+  height: 15%;
+  width: 30%;
+  right: 10px;
+  bottom: 10px;
 }
