@@ -38,6 +38,22 @@ searchBtn.addEventListener("click", function () {
     });
 });
 
+// To get results on "Enter"
+// Get the input field
+var input = document.querySelector("#input");
+// Execute a function when the user presses a key on the keyboard
+input.addEventListener("keypress", function (searchedMovies) {
+  // If the user presses the "Enter" key on the keyboard
+  var searchBtn = document.querySelector(".button");
+
+  if (searchedMovies.key === "Enter") {
+    // Cancel the default action, if needed
+    searchedMovies.preventDefault();
+    // Trigger the button element with a click
+    document.querySelector(".button").click();
+  }
+});
+
 // main part
 
 //carousel
