@@ -29,7 +29,7 @@ Modern single-page dashboard for discovering films via [TMDB](https://www.themov
    npx serve .
    ```
 
-> **IMDb dependency removed** – all credits/reviews now come from TMDB, so只需一个 key。
+> **IMDb dependency removed** – 所有信息均来自 TMDB。默认会使用课程时代的示例 key，为长期使用请替换为你自己的 key。
 
 ## 🛠️ Customizing
 - **Styling**: tweak CSS variables at the top of `assets/style.css` (colors, radii, fonts).

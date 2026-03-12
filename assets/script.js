@@ -1,9 +1,10 @@
 (() => {
   const CONFIG = window.CINE_REVIEW_CONFIG || {};
-  const TMDB_KEY = CONFIG.tmdbKey;
-  if (!TMDB_KEY) {
-    throw new Error("TMDB key missing. Add it to assets/config.js");
-  }
+  const DEFAULT_TMDB_KEY = "795237d1f5c251b1695453597353c8fd";
+  const TMDB_KEY =
+    CONFIG.tmdbKey && CONFIG.tmdbKey !== "REPLACE_WITH_YOUR_TMDB_KEY"
+      ? CONFIG.tmdbKey
+      : DEFAULT_TMDB_KEY;
 
   const TMDB_BASE = "https://api.themoviedb.org/3";
   const IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
