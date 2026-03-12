@@ -1,275 +1,300 @@
-// Selecting the elements from the document aka DOM
-var api = "795237d1f5c251b1695453597353c8fd";
-var searchBtn = document.querySelector(".button");
-var input = document.querySelector("#input");
-var searchedMovies = document.querySelector("#searched-movies");
-
-searchBtn.addEventListener("click", function () {
-  // empty the movie card
-  $(".movieCard").text("");
-  // get the input value
-  var searchInput = input.value;
-  var searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=795237d1f5c251b1695453597353c8fd&query=${searchInput}`;
-
-  fetch(searchUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      // console.log(data);
-      for (i = 0; i < data.results.length; i++) {
-        if (data.results[i].poster_path !== null) {
-          var movieName = data.results[i].title;
-          var posterId = data.results[i].poster_path;
-          var voteScore = data.results[i].vote_average;
-          var Plot = data.results[i].overview;
-          var movieId = data.results[i].id;
-          var releaseDate = data.results[i].release_date;
-          var scoreUrl =
-            "https://cdn-icons-png.flaticon.com/128/2107/2107890.png";
-          var photoUrl =
-            "https://www.themoviedb.org/t/p/w440_and_h660_face" + posterId;
-          $(".movieCard").append(
-            `<div class='column'>
-          <div class='callout'>
-          <img src="${photoUrl}"/>
-          <a class="modalLink" data-bs-toggle="modal" data-bs-target="#movieModal">${movieName}</a>
-          <p id="scoreFt">${voteScore}</p>
-          <img src="${scoreUrl}" id="scoreBg"/>
-          <p style="display:none" id="movieId">${movieId}</p>
-          <p style="display:none" id="moviePlot">${Plot}</p>
-          <p style="display:none" id="releaseDate">${releaseDate}</p>
-          </div>
-          </div>
-          `
-          );
-        }
-      }
-    });
-});
-
-// To get results on "Enter"
-// Get the input field
-var input = document.querySelector("#input");
-// Execute a function when the user presses a key on the keyboard
-input.addEventListener("keypress", function (searchedMovies) {
-  // If the user presses the "Enter" key on the keyboard
-  var searchBtn = document.querySelector(".button");
-
-  if (searchedMovies.key === "Enter") {
-    // Cancel the default action, if needed
-    searchedMovies.preventDefault();
-    // Trigger the button element with a click
-    document.querySelector(".button").click();
+(() => {
+  const CONFIG = window.CINE_REVIEW_CONFIG || {};
+  const TMDB_KEY = CONFIG.tmdbKey;
+  if (!TMDB_KEY) {
+    throw new Error("TMDB key missing. Add it to assets/config.js");
   }
-});
 
-// main part
+  const TMDB_BASE = "https://api.themoviedb.org/3";
+  const IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
+  const HERO_IMAGE = "https://image.tmdb.org/t/p/original";
 
-//carousel
-fetch(
-  "https://api.themoviedb.org/3/trending/movie/week?api_key=795237d1f5c251b1695453597353c8fd"
-)
-  .then((res) => res.json())
-  .then((data) => {
-    // populate the posters
-    let movies = data.results;
-    let posterIndexes = generateRandomPhotos();
+  const state = {
+    sort: "top_rated",
+    genre: null,
+    query: "",
+    trending: [],
+    movies: [],
+  };
 
-    let count = 0;
+  const GENRES = [
+    { id: 28, label: "Action" },
+    { id: 12, label: "Adventure" },
+    { id: 16, label: "Animation" },
+    { id: 35, label: "Comedy" },
+    { id: 80, label: "Crime" },
+    { id: 18, label: "Drama" },
+    { id: 10751, label: "Family" },
+    { id: 14, label: "Fantasy" },
+    { id: 27, label: "Horror" },
+    { id: 878, label: "Sci-Fi" },
+  ];
 
-    // loop through the movies
-    for (let i = 0; i < movies.length; i++) {
-      // movie backdrops for the four selected movies
-      if (posterIndexes.includes(i)) {
-        // append the image to the carousel
-        document.getElementById("slides-container").innerHTML += `
-    <li class="${count == 0 ? "is-active " : ""}orbit-slide">
-      <figure class="orbit-figure">
-        <img class="orbit-image" src="${
-          "https://image.tmdb.org/t/p/original/" + movies[i].backdrop_path
-        }" alt="${movies[i].original_title}">
-        <figcaption class="orbit-caption">${
-          movies[i].original_title
-        }</figcaption>
-      </figure>
-    </li>  
-    `;
+  const elements = {
+    searchForm: document.getElementById("searchForm"),
+    searchInput: document.getElementById("searchInput"),
+    sortSelect: document.getElementById("sortSelect"),
+    genreFilters: document.getElementById("genreFilters"),
+    gallery: document.getElementById("gallery"),
+    status: document.getElementById("statusMessage"),
+    trendingTrack: document.getElementById("trendingTrack"),
+    heroPills: document.querySelectorAll(".hero-actions .pill"),
+    modal: document.getElementById("modal"),
+    modalClose: document.querySelector(".modal-close"),
+    modalPoster: document.getElementById("modalPoster"),
+    modalMeta: document.getElementById("modalMeta"),
+    modalTitle: document.getElementById("modalTitle"),
+    modalOverview: document.getElementById("modalOverview"),
+    modalRelease: document.getElementById("modalRelease"),
+    modalDirector: document.getElementById("modalDirector"),
+    modalCast: document.getElementById("modalCast"),
+    modalScore: document.getElementById("modalScore"),
+    modalTrailer: document.getElementById("modalTrailer"),
+    modalReviews: document.getElementById("modalReviews"),
+  };
 
-        count++;
+  const api = {
+    async get(path, params = {}) {
+      const searchParams = new URLSearchParams({
+        api_key: TMDB_KEY,
+        language: "en-US",
+        ...params,
+      });
+      const url = `${TMDB_BASE}${path}?${searchParams.toString()}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`TMDB error: ${res.status}`);
+      return res.json();
+    },
+  };
+
+  function setStatus(message, tone = "info") {
+    elements.status.textContent = message;
+    elements.status.dataset.tone = tone;
+  }
+
+  function setYear() {
+    document.getElementById("year").textContent = new Date().getFullYear();
+  }
+
+  function initGenres() {
+    elements.genreFilters.innerHTML = GENRES.map(
+      (genre) => `<button data-id="${genre.id}">${genre.label}</button>`
+    ).join("");
+  }
+
+  function highlightActiveGenre() {
+    [...elements.genreFilters.children].forEach((btn) => {
+      const id = Number(btn.dataset.id);
+      btn.classList.toggle("active", state.genre === id);
+    });
+  }
+
+  async function loadTrending() {
+    try {
+      const data = await api.get("/trending/movie/week");
+      state.trending = data.results.slice(0, 8);
+      renderTrending();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  function renderTrending() {
+    elements.trendingTrack.innerHTML = state.trending
+      .map(
+        (movie) => `
+        <article class="slide-card">
+          <img src="${movie.backdrop_path ? HERO_IMAGE + movie.backdrop_path : ""}" alt="${movie.title}" />
+          <div class="slide-caption">${movie.title}</div>
+        </article>
+      `
+      )
+      .join("");
+  }
+
+  async function loadMovies() {
+    setStatus("Loading movies…", "info");
+    elements.gallery.classList.add("loading");
+    try {
+      let data;
+      if (state.query) {
+        data = await api.get("/search/movie", {
+          query: state.query,
+          include_adult: false,
+        });
+      } else {
+        data = await api.get(`/movie/${state.sort}`, {
+          with_genres: state.genre || undefined,
+        });
       }
+      state.movies = data.results || [];
+      renderMovies();
+      setStatus(`Showing ${state.movies.length} titles`, "success");
+    } catch (err) {
+      console.error(err);
+      setStatus("Failed to load movies", "error");
+      elements.gallery.innerHTML = `<div class="empty-state">Unable to fetch movies right now.</div>`;
+    } finally {
+      elements.gallery.classList.remove("loading");
+    }
+  }
+
+  function renderMovies() {
+    if (!state.movies.length) {
+      elements.gallery.innerHTML = `<div class="empty-state">No movies found. Try another search.</div>`;
+      return;
     }
 
-    $(document).foundation();
-  });
-// end of carousel
+    elements.gallery.innerHTML = state.movies
+      .map((movie) => createMovieCard(movie))
+      .join("");
+  }
 
-document.getElementById("genres").addEventListener("click", function (e) {
-  if (e.target && e.target.nodeName !== "LI") {
-    $(".movieCard").text("");
-    var selectedOption = document.getElementById("sort-options");
-    // console.log(selectedOption.value);
-    var genreId = e.target.id;
-    var genreUrl = `https://api.themoviedb.org/3/movie/${selectedOption.value}?api_key=795237d1f5c251b1695453597353c8fd&with_genres=${genreId}`;
-    fetch(genreUrl)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        // console.log(data);
-        for (i = 0; i < data.results.length; i++) {
-          if (data.results[i].poster_path !== null) {
-            var movieName = data.results[i].title;
-            var posterId = data.results[i].poster_path;
-            var voteScore = data.results[i].vote_average;
-            var Plot = data.results[i].overview;
-            var movieId = data.results[i].id;
-            var releaseDate = data.results[i].release_date;
-            // console.log(movieId);
-            var scoreUrl =
-              "https://cdn-icons-png.flaticon.com/128/2107/2107890.png";
-            var photoUrl =
-              "https://www.themoviedb.org/t/p/w440_and_h660_face" + posterId;
-            $(".movieCard").append(
-              `<div class='column'>
-          <div class='callout'>
-          <img src="${photoUrl}"/>
-          <a class="modalLink" data-bs-toggle="modal" data-bs-target="#movieModal">${movieName}</a>
-          <p id="scoreFt">${voteScore}</p>
-          <img src="${scoreUrl}" id="scoreBg"/>
-          <p style="display:none" id="movieId">${movieId}</p>
-          <p style="display:none" id="moviePlot">${Plot}</p>
-          <p style="display:none" id="releaseDate">${releaseDate}</p>
-          </div>
-          </div>
-          `
-            );
-          }
+  function createMovieCard(movie) {
+    const poster = movie.poster_path ? IMAGE_BASE + movie.poster_path : "";
+    const score = movie.vote_average ? movie.vote_average.toFixed(1) : "–";
+    const release = movie.release_date ? new Date(movie.release_date).getFullYear() : "—";
+    return `
+      <article class="movie-card" data-id="${movie.id}">
+        <img src="${poster}" alt="${movie.title}" loading="lazy" />
+        <div class="card-body">
+          <span class="badge">${release}</span>
+          <h3>${movie.title}</h3>
+          <p>${movie.overview ? movie.overview.slice(0, 90) + "…" : "No synopsis available."}</p>
+          <button type="button" data-id="${movie.id}" aria-label="View details for ${movie.title}">
+            View details · ${score}
+          </button>
+        </div>
+      </article>
+    `;
+  }
+
+  async function openModal(movieId) {
+    elements.modal.classList.remove("hidden");
+    elements.modalPoster.innerHTML = "Loading…";
+    elements.modalTitle.textContent = "";
+    elements.modalOverview.textContent = "";
+    elements.modalReviews.innerHTML = "";
+    elements.modalTrailer.innerHTML = "";
+
+    try {
+      const [details, credits, videos, reviews] = await Promise.all([
+        api.get(`/movie/${movieId}`),
+        api.get(`/movie/${movieId}/credits`),
+        api.get(`/movie/${movieId}/videos`),
+        api.get(`/movie/${movieId}/reviews`),
+      ]);
+
+      const poster = details.poster_path ? IMAGE_BASE + details.poster_path : "";
+      elements.modalPoster.innerHTML = poster
+        ? `<img src="${poster}" alt="${details.title}" />`
+        : "";
+      elements.modalMeta.textContent = details.genres
+        .map((genre) => genre.name)
+        .join(" · ");
+      elements.modalTitle.textContent = details.title;
+      elements.modalOverview.textContent = details.overview || "No synopsis available.";
+      elements.modalRelease.textContent = details.release_date || "—";
+      const score = details.vote_average ? details.vote_average.toFixed(1) : "—";
+      elements.modalScore.textContent = `${score} / 10`;
+
+      const director = credits.crew.find((member) => member.job === "Director");
+      elements.modalDirector.textContent = director ? director.name : "—";
+      const castNames = credits.cast
+        .slice(0, 5)
+        .map((person) => person.name)
+        .join(", ");
+      elements.modalCast.textContent = castNames || "—";
+
+      const trailer = videos.results.find(
+        (video) => video.site === "YouTube" && video.type === "Trailer"
+      );
+      if (trailer) {
+        elements.modalTrailer.innerHTML = `<iframe src="https://www.youtube.com/embed/${trailer.key}" allowfullscreen></iframe>`;
+      }
+
+      const reviewItems = reviews.results.slice(0, 3);
+      elements.modalReviews.innerHTML = reviewItems.length
+        ? reviewItems
+            .map(
+              (review) => `<li><strong>${review.author}</strong>: ${review.content.slice(0, 220)}…</li>`
+            )
+            .join("")
+        : "<li>No public reviews yet.</li>";
+    } catch (err) {
+      console.error(err);
+      elements.modalOverview.textContent = "Unable to load details right now.";
+    }
+  }
+
+  function closeModal() {
+    elements.modal.classList.add("hidden");
+  }
+
+  function wireEvents() {
+    elements.searchForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      state.query = elements.searchInput.value.trim();
+      loadMovies();
+    });
+
+    elements.sortSelect.addEventListener("change", (event) => {
+      state.sort = event.target.value;
+      state.query = "";
+      loadMovies();
+    });
+
+    elements.genreFilters.addEventListener("click", (event) => {
+      if (event.target.matches("button")) {
+        const id = Number(event.target.dataset.id);
+        state.genre = state.genre === id ? null : id;
+        highlightActiveGenre();
+        state.query = "";
+        loadMovies();
+      }
+    });
+
+    elements.gallery.addEventListener("click", (event) => {
+      const id = event.target.closest("[data-id]")?.dataset.id;
+      if (id) {
+        openModal(id);
+      }
+    });
+
+    elements.modalClose.addEventListener("click", closeModal);
+    elements.modal.addEventListener("click", (event) => {
+      if (event.target === elements.modal) closeModal();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !elements.modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+
+    elements.heroPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const sort = pill.dataset.genre;
+        if (sort) {
+          state.sort = sort;
+          state.genre = null;
+          state.query = "";
+          elements.sortSelect.value = sort;
+          highlightActiveGenre();
+          loadMovies();
         }
       });
-  }
-});
-
-// .catch(() => {
-//   alert("error loading carousel");
-// });
-
-// function to generate random numbers for four posters between 0 and 19
-function generateRandomPhotos() {
-  let photoIndexes = [];
-
-  let count = 0;
-
-  while (count < 4) {
-    let randomNumber = getRandomInt(0, 19);
-
-    // loop through the photoIndexes array to find if it has already been chosen
-    let found = false;
-
-    for (let i = 0; i < photoIndexes.length; i++) {
-      if (photoIndexes[i] == randomNumber) {
-        found = true;
-      }
-    }
-
-    // if not found, add it to the indexes array and increment count
-    if (!found) {
-      photoIndexes.push(randomNumber);
-      count++;
-    }
-  }
-
-  return photoIndexes;
-}
-
-// function to generate number between min and max (inclusive)
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// For Modal
-
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// clicking on any movie image generates a modal
-document.querySelector(".movieCard").addEventListener("click", function (e) {
-  //console.log("this works!");
-  if (e.target.nodeName === "DIV") {
-    // console.log(e.target);
-    modal.style.display = "block";
-    var selectedElement = e.target;
-    modalFunction(selectedElement);
-  } else {
-    // console.log(e.target);
-    modal.style.display = "block";
-    var selectedElement = e.target.parentElement;
-    modalFunction(selectedElement);
-  }
-});
-
-function modalFunction(selectedElement) {
-  var id = selectedElement.children[4].textContent;
-  var detailUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=795237d1f5c251b1695453597353c8fd&language=en-US`;
-  var trailerUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=795237d1f5c251b1695453597353c8fd&language=en-US`;
-  $("#movie-title").text(selectedElement.children[1].text);
-  $("#movie-plot").text(selectedElement.children[5].textContent);
-  $("#movie-date").text(selectedElement.children[6].textContent);
-  $("#reviews").empty();
-  $("#movie-cast").empty();
-  fetch(detailUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      // console.log(data);
-      var imdbId = data.imdb_id;
-      // console.log(imdbId);
-      var reviewUrl = `https://imdb-api.com/en/API/Reviews/k_m5443zev/${imdbId}`;
-      fetch(reviewUrl)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          // console.log(data);
-          for (i = 0; i < 3; i++) {
-            var reviewContent = data.items[i].content;
-            var reviewUser = data.items[i].username;
-            var reviewList = `${reviewUser}: "${reviewContent}"`;
-            var li = document.createElement("LI");
-            li.textContent = reviewList;
-            document.getElementById("reviews").appendChild(li);
-          }
-        });
-      var CastUrl = `https://imdb-api.com/en/API/FullCast/k_m5443zev/${imdbId}`;
-      fetch(CastUrl)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          // console.log(data);
-          document.getElementById("movie-director").textContent =
-            data.directors.items[0].name;
-          for (i = 0; i < 5; i++) {
-            document.getElementById("movie-cast").textContent +=
-              data.actors[i].name + " / ";
-          }
-        });
     });
+  }
 
-  fetch(trailerUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      // console.log(data);
-      var youtubeUrl = "https://www.youtube.com/watch?v=" + data.results[0].key;
-      console.log(youtubeUrl);
-    });
-}
-// this code responsible for allowing user to exit the modal
-document.querySelector(".close").addEventListener("click", function () {
-  modal.style.display = "none";
-});
+  function init() {
+    setYear();
+    initGenres();
+    highlightActiveGenre();
+    wireEvents();
+    loadTrending();
+    loadMovies();
+    setStatus("Ready", "success");
+  }
+
+  init();
+})();
